@@ -1,0 +1,154 @@
+#PhotoService ::placeholder {
+  font-weight: bold;
+  font-size: 1.45em;
+  font-stretch: ultra-condensed;
+  letter-spacing: 0.75px;
+  padding-left: 4.5px;
+  display:inline-block;
+    -webkit-transform:scale(0.97,1.04); /* Safari and Chrome */
+    -moz-transform:scale(0.97,1.04); /* Firefox */
+    -ms-transform:scale(0.97,1.04); /* IE 9 */
+    -o-transform:scale(0.97,1.04); /* Opera */
+    transform:scale(0.97,1.04);
+}
+
+#PhotoService #navBarSearchBar:focus {
+  outline: none;
+}
+
+#PhotoService div #carouselContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background-color: white;
+  z-index: 1;
+}
+
+#PhotoService #carouselExitButton {
+  margin: 61px 0 0 1349px;
+  height: 29px;
+}
+
+#PhotoService #carouselLeftButton {
+  margin: 286px 0 0 70px;
+  padding: 0 0 250px 0;
+  height: 36px;
+  float: 'left';
+}
+
+#PhotoService #currentCarouselPhoto {
+  margin: 0px 39px 4.5px 37px;
+  height: 525.5px;
+  width: 788px;
+  border-radius: 15px;
+  float: 'left';
+}
+
+#PhotoService #carouselRightButton {
+  height: 35px;
+  margin: 0 0 250px 0;
+  float: 'left';
+}
+
+#PhotoService #prevAndNextImagesContainer {
+  margin: 73px 40px 0 1062px;
+}
+
+#PhotoService .nextPrevImages {
+  height: 63px;
+  width: 65px;
+  margin: 0 13px 0 0;
+  border-radius: 6px;
+}
+
+#PhotoService #numberAndCaptionContainer {
+  margin: 0 4px 200px 265px;
+}
+
+#PhotoService #numberOfCurrentPhoto {
+  margin: 58px 0px 0px 790px;
+  font-weight: bold;
+  opacity: 70%;
+  font-size: 1em;
+  font-stretch: ultra-condensed;
+  letter-spacing: -0.5px;
+  font-family: 'Charter';
+}
+
+#PhotoService #caption {
+  font-family: 'Calibre', sans-serif;
+  margin: 18px 63px 0px 791.5px;
+  font-size: 1em;
+  font-weight: lighter;
+  font-stretch: ultra-condensed;
+  line-height: 22px;
+  opacity: 70%;
+}
+
+#PhotoService #photoGalleryService {
+  margin: 0 -8px;
+}
+
+#PhotoService .photoGalButton {
+  font-style: 'sans-serif';
+  font-weight: 450;
+  font-size: 0.88em;
+  font-stretch: 'ultra-condensed';
+  padding-left: 33px;
+  width:'100px';
+  color: rgba(65, 65, 65);
+}
+
+#PhotoService .photoGalButton:focus{
+  border: 1px solid rgb(0, 0, 0, 0.5) !important;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.75);
+  outline: none;
+}
+
+#PhotoService #viewPhotos{
+  font-style: 'sans-serif';
+  font-weight: 450;
+  font-size: 0.87em;
+  font-stretch: 'ultra-condensed';
+  padding-left: 8px;
+  width:'100px';
+  color: rgba(65, 65, 65);
+}
+
+#PhotoService .innerPhoto {
+  transition: .35s ease-in-out;
+}
+
+#PhotoService .innerPhoto:hover {
+  transform: scale(1.05);
+  -webkit-transition: .35s ease-in-out;
+  -moz-transition: .35s ease-in-out;
+  -o-transition: .35s ease-in-out;
+  transition: .35s ease-in-out;
+}
+
+#PhotoService #hardcodePhoto1 {
+  height: 790px;
+  width: 858px;
+}
+
+#PhotoService #hardcodePhoto2 {
+  height: 450px;
+  width: 858px;
+}
+
+#PhotoService #hardcodePhoto3 {
+  height: 410px;
+  width: 859px;
+}
+
+#PhotoService .photoContainer {
+  background-color: black !important;
+}
+
+#PhotoService .innerPhoto {
+  background-color: black;
+}
