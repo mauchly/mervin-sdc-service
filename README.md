@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project Name
 
 > Project description
@@ -37,3 +38,7 @@ npm install -g webpack
 npm install
 ```
 
+=======
+# mervin-sdc-service
+AirBnB mock photo service
+>>>>>>> 0a8d9e5d6f7ab6750f40b0908cee2324c4dbd511
