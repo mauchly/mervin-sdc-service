@@ -6,6 +6,18 @@ const db = mysql.createConnection({
   database: 'photo_gallery',
 });
 
+var pg = require('knex')({
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'root',
+    password : 'root',
+    database : 'mervin'
+  }
+});
+
+
+
 const getMainRouteString = (id) => {
   return new Promise((resolve, reject) => {
     let select_query_name = `SELECT * FROM Photos WHERE name='${id}'`;
@@ -18,15 +30,27 @@ const getMainRouteString = (id) => {
   });
 };
 
+// const getMainRouteNum = (id) => {
+//   return new Promise((resolve, reject) => {
+//     let select_query_num = `SELECT * FROM Photos WHERE listing_id=${id}`;
+//     db.query(select_query_num, (err, results) => {
+//       if (err) {
+//         reject(err);
+//       }
+//       resolve(results);
+//     });
+//   });
+// };
+
+// POSTGRES
 const getMainRouteNum = (id) => {
   return new Promise((resolve, reject) => {
-    let select_query_num = `SELECT * FROM Photos WHERE listing_id=${id}`;
-    db.query(select_query_num, (err, results) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(results);
-    });
+    pg.from('listings').innerJoin('text', 'listings.listing_id', 'text.listing_id').where('listings.listing_id', id)
+      .then(data => {
+        console.log(data)
+        resolve(data)
+      })
+      .catch(err => { reject(err) })
   });
 };
 

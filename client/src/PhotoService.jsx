@@ -52,6 +52,39 @@ class PhotoService extends React.Component {
     return Math.ceil(count / 3);
   };
 
+  // componentDidMount() {
+  //   let url = window.location.href;
+  //   let id = url.split('/').pop();
+  //   if (isNaN(Number(id))) {
+  //     if (listingNames.indexOf(id) === -1) {
+  //       id = listingNames[1];
+  //     }
+  //   }
+  //   let data = {listingId: id};
+  //     $.ajax({
+  //       method: 'GET',
+  //       url: 'http://localhost:3002/listing-info',
+  //       data,
+  //       dataType: 'text',
+  //       success: (result) => {
+  //         result = JSON.parse(result);
+  //         console.log('result in client', result);
+  //         let numOfPhotos = this.dupGetNumOfListingPhotos(result[0]);
+  //         this.setState(() => ({
+  //           currentListing: result[0],
+  //           currentPhotoUrl: result[0].photo1_a,
+  //           nextPrevImages: [result[0].photo1_b, result[0].photo2_b, result[0].photo3_b, result[0].photo4_b],
+  //           numOfCurrentListingPhotos: numOfPhotos,
+  //           currentPhotoCaption: result[0].photo1_caption
+  //         }));
+  //       },
+  //       error: (err) => {
+  //         console.log('error', err);
+  //       }
+  //     });
+  // };
+
+  //POSTGRES
   componentDidMount() {
     let url = window.location.href;
     let id = url.split('/').pop();
@@ -68,14 +101,14 @@ class PhotoService extends React.Component {
         dataType: 'text',
         success: (result) => {
           result = JSON.parse(result);
-          console.log('result in client', result);
-          let numOfPhotos = this.dupGetNumOfListingPhotos(result[0]);
+          let numOfPhotos = result.length;
+          result = this.refactor(result);
           this.setState(() => ({
-            currentListing: result[0],
-            currentPhotoUrl: result[0].photo1_a,
-            nextPrevImages: [result[0].photo1_b, result[0].photo2_b, result[0].photo3_b, result[0].photo4_b],
+            currentListing: result,
+            currentPhotoUrl: result.photo1_a,
+            nextPrevImages: [result.photo1_b, result.photo2_b, result.photo3_b, result.photo4_b],
             numOfCurrentListingPhotos: numOfPhotos,
-            currentPhotoCaption: result[0].photo1_caption
+            currentPhotoCaption: result.photo1_caption
           }));
         },
         error: (err) => {
@@ -83,6 +116,17 @@ class PhotoService extends React.Component {
         }
       });
   };
+
+  refactor (result) {
+    let object = {};
+    object.listing_id = result[0].listing_id;
+    result.forEach((each, index) => {
+      object[`photo${index+1}_a`] = each.l_photo;
+      object[`photo${index+1}_b`] = each.s_photo;
+      object[`photo${index+1}_caption`] = each.alt_txt;
+    })
+    return object;
+  }
 
   handleNextPrevClick(e) {
     e.preventDefault();
