@@ -59,10 +59,6 @@ class PhotoService extends React.Component {
       if (listingNames.indexOf(id) === -1) {
         id = listingNames[1];
       }
-    } else {
-      if (id < 10001 || id > 10100) {
-        id = 10001;
-      }
     }
     let data = {listingId: id};
       $.ajax({
