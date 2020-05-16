@@ -12,11 +12,9 @@ var pg = require('knex')({
     host : '127.0.0.1',
     user : 'root',
     password : 'root',
-    database : 'mervin'
+    database : 'sdc'
   }
 });
-
-
 
 const getMainRouteString = (id) => {
   return new Promise((resolve, reject) => {
@@ -45,7 +43,7 @@ const getMainRouteString = (id) => {
 // POSTGRES
 const getMainRouteNum = (id) => {
   return new Promise((resolve, reject) => {
-    pg.from('listings').innerJoin('text', 'listings.listing_id', 'text.listing_id').where('listings.listing_id', id)
+    pg.from('listings').innerJoin('favorite', 'listings.listing_id', 'favorite.listing_id').where('listings.listing_id', id)
       .then(data => {
         console.log(data)
         resolve(data)
