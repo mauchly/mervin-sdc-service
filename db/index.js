@@ -16,22 +16,10 @@ var pg = require('knex')({
   }
 });
 
-const getMainRouteString = (id) => {
-  return new Promise((resolve, reject) => {
-    let select_query_name = `SELECT * FROM Photos WHERE name='${id}'`;
-    db.query(select_query_name, (err, results) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(results);
-    });
-  });
-};
-
-// const getMainRouteNum = (id) => {
+// const getMainRouteString = (id) => {
 //   return new Promise((resolve, reject) => {
-//     let select_query_num = `SELECT * FROM Photos WHERE listing_id=${id}`;
-//     db.query(select_query_num, (err, results) => {
+//     let select_query_name = `SELECT * FROM Photos WHERE name='${id}'`;
+//     db.query(select_query_name, (err, results) => {
 //       if (err) {
 //         reject(err);
 //       }
@@ -40,7 +28,6 @@ const getMainRouteString = (id) => {
 //   });
 // };
 
-// POSTGRES
 const getMainRouteNum = (id) => {
   return new Promise((resolve, reject) => {
     pg.from('listings').innerJoin('favorite', 'listings.listing_id', 'favorite.listing_id').where('listings.listing_id', id)
@@ -76,11 +63,19 @@ const recPhotos = (id) => {
   });
 };
 
+const deleteListing = () => {
+
+}
+
+const postListing = () => {
+
+}
 
 module.exports = {
-  db,
-  getMainRouteString,
+  // getMainRouteString,
   getMainRouteNum,
   toggleFavorite,
-  recPhotos
+  recPhotos,
+  deleteListing,
+  postListing,
 };
