@@ -1,11 +1,11 @@
+require('newrelic')
 const express = require('express');
 const app = express();
 const port = 3002;
 const bodyParser = require('body-parser');
 const path = require('path');
 // const getMainRouteString = require('../db/index.js').getMainRouteString;
-const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing}  = require('../db/index.js');
-
+const {getMainRouteNum, toggleFavorite, recPhotos, deleteListingPhoto, postListingPhoto}  = require('../db/index.js');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

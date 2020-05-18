@@ -1,0 +1,39 @@
+# config:
+#   target: 'http://127.0.0.1:3002/10003'
+
+#   phases:
+#     - duration: 60
+#       arrivalRate: 10
+#       name: 'Warm up'
+#     - duration: 120
+#       arrivalRate: 10
+#       rampTo: 25
+#       name: 'Ramp up'
+#     - duration: 1200
+#       arrivalRate: 25
+#       name: 'Cruise'
+#     - duration: 30
+#       arrivalRate: 100
+#       name: 'Crash'
+
+config:
+  target: 'http://127.0.0.1:3002'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      name: 'Warm up'
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 25
+      name: 'Ramp up'
+    - duration: 1200
+      arrivalRate: 25
+      name: 'Cruise'
+    - duration: 30
+      arrivalRate: 100
+      name: 'Crash'
+
+scenarios:
+  - flow:
+    - get:
+        url: "/1003"
