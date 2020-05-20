@@ -4,7 +4,6 @@ const app = express();
 const port = 3002;
 const bodyParser = require('body-parser');
 const path = require('path');
-// const getMainRouteString = require('../db/index.js').getMainRouteString;
 const {getMainRouteNum, toggleFavorite, recPhotos, deleteListingPhoto, postListingPhoto}  = require('../db/index.js');
 
 app.use(function(req, res, next) {
@@ -18,6 +17,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+
 
 app.get('/:id/rec-photos', (req, res) => {
   let id = req.params.id;

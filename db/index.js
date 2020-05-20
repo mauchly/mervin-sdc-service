@@ -1,11 +1,3 @@
-const mysql = require('mysql');
-
-const db = mysql.createConnection({
-  user: 'root',
-  password: '',
-  database: 'photo_gallery',
-});
-
 var pg = require('knex')({
   client: 'pg',
   connection: {
@@ -15,18 +7,6 @@ var pg = require('knex')({
     database : 'sdc'
   }
 });
-
-const getMainRouteString = (id) => {
-  return new Promise((resolve, reject) => {
-    let select_query_name = `SELECT * FROM Photos WHERE name='${id}'`;
-    db.query(select_query_name, (err, results) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(results);
-    });
-  });
-};
 
 const getMainRouteNum = (id) => {
   return new Promise((resolve, reject) => {
