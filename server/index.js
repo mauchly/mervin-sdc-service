@@ -19,6 +19,7 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
+// GET list of s_photos
 app.get('/:id/rec-photos', getCache, (req, res) => {
   let id = req.params.id;
   recPhotos(id)
@@ -29,27 +30,22 @@ app.get('/:id/rec-photos', getCache, (req, res) => {
     .catch((err) => {console.log('error', err);});
 });
 
-app.get('/listing-info', (req, res) => {
-  let id = Number(req.query.listingId);
+// GET listing info
+app.get('/:id/listing-info', (req, res) => {
+  let id = req.params.id;
   getMainRouteNum(id)
     .then((results) => {res.send(results);})
     .catch((err) => {console.log('error', err);});
 });
 
-// app.use('/:id', express.static(__dirname + '/../public/index.html'));
+// GET main landing page
 app.get('/:id', (req, res) => {
   res.sendFile('index.html', {
     root: path.join(__dirname + '/../public/'),
   });
 });
 
-app.delete('/deleteListing', (req, res) => {
-  let id = Number(req.query.listingId);
-  deleteListing(id)
-    .then((data) => {res.send(data)})
-    .catch((err) => {console.log(err)})
-})
-
+// POST listing info
 app.post('/postListing', (req, res) => {
   let listing = req.body.listing;
   postListing(listing)
@@ -57,25 +53,32 @@ app.post('/postListing', (req, res) => {
     .catch((err) => {console.log(err)})
 })
 
-app.put('/updateListing', (req, res) => {
-  let id = Number(req.query.listingId);
+// POST favorite
+app.post('/favorite', (req, res) => {
+  let id = req.body.listingId;
+  console.log('id', id)
+  toggleFavorite(id)
+    .then((results) => {res.send(results);})
+    .catch((err) => {console.log('error', err);});
+});
+
+
+// DELETE listing
+app.delete('/:id/deleteListing', (req, res) => {
+  let id = req.params.id;
+  deleteListing(id)
+    .then((data) => {res.send(data)})
+    .catch((err) => {console.log(err)})
+})
+
+// PUT update listing
+app.put('/:id/updateListing', (req, res) => {
+  let id = req.params.id;
   let listing = req.body.listing;
   updateListing(id, listing)
     .then((data) => {res.send(data)})
     .catch((err) => {console.log(err)})
 })
-
-app.post('/favorite', (req, res) => {
-  let id = req.body.listingId;
-  console.log('id', id)
-  toggleFavorite(id)
-  .then((results) => {
-    res.send(results);
-  })
-  .catch((err) => {
-    console.log('error', err);
-  });
-});
 
 
 

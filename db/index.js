@@ -12,7 +12,6 @@ const getMainRouteNum = (id) => {
   return new Promise((resolve, reject) => {
     pg.from('listings').innerJoin('favorite', 'listings.listing_id', 'favorite.listing_id').where('listings.listing_id', id)
       .then(data => {
-        console.log(data)
         resolve(data)
       })
       .catch(err => { reject(err) })

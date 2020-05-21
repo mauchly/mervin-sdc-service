@@ -86,21 +86,11 @@ class PhotoService extends React.Component {
 
   //POSTGRES
   componentDidMount() {
-    let url = window.location.href;
-    let id = url.split('/').pop();
-    if (isNaN(Number(id))) {
-      if (listingNames.indexOf(id) === -1) {
-        id = listingNames[1];
-      }
-    }
-    let data = {listingId: id};
+    let id = window.location.pathname.substr(1)
       $.ajax({
         method: 'GET',
-        url: 'http://localhost:3002/listing-info',
-        data,
-        dataType: 'text',
+        url: `http://localhost:3002/${id}/listing-info`,
         success: (result) => {
-          result = JSON.parse(result);
           let numOfPhotos = result.length;
           result = this.refactor(result);
           this.setState(() => ({
@@ -111,9 +101,7 @@ class PhotoService extends React.Component {
             currentPhotoCaption: result.photo1_caption
           }));
         },
-        error: (err) => {
-          console.log('error', err);
-        }
+        error: (err) => {console.log('error', err);}
       });
   };
 
