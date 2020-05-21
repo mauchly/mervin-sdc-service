@@ -45,21 +45,46 @@ const recPhotos = (id) => {
   });
 };
 
-const deleteListingPhoto = (listingDetails) => {
-
+const deleteListing = (id) => {
+  return new Promise((resolve, reject) => {
+    pg.from('listings').where('listing_id', id).del()
+      .then(data => {
+        console.log(data)
+        resolve()
+      })
+      .catch(err => {reject(err)})
+  });
 }
 
-const postListingPhoto = (listingDetails) => {
-
+const postListing = (photos) => {
+  return new Promise((resolve, reject) => {
+    photos.forEach(each => {
+      pg.from('listings').insert(each)
+        .then(data => {
+          console.log(data)
+          resolve()
+        })
+        .catch(err => {reject(err)})
+    })
+  });
 }
 
-// postListing(-1)
+const updateListing = (id, newId) => {
+  return new Promise((resolve, reject) => {
+    pg('listings').where('listing_id', id).update({listing_id: newId})
+      .then(data => {
+        console.log(data)
+        resolve()
+      })
+      .catch(err => {reject(err)})
+  });
+}
 
 module.exports = {
-  // getMainRouteString,
   getMainRouteNum,
   toggleFavorite,
   recPhotos,
-  deleteListingPhoto,
-  postListingPhoto,
+  deleteListing,
+  postListing,
+  updateListing,
 };

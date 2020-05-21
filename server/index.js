@@ -4,7 +4,8 @@ const app = express();
 const port = 3002;
 const bodyParser = require('body-parser');
 const path = require('path');
-const {getMainRouteNum, toggleFavorite, recPhotos, deleteListingPhoto, postListingPhoto}  = require('../db/index.js');
+const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, updateListing}  = require('../db/index.js');
+const {getCache, setCache} = require('./redis.js')
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -18,27 +19,14 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-
-
-app.get('/:id/rec-photos', (req, res) => {
+app.get('/:id/rec-photos', getCache, (req, res) => {
   let id = req.params.id;
   recPhotos(id)
     .then((results) => {
-      results = results[0];
-      let keys = Object.keys(results);
-      let newKey;
-      for (let key of keys) {
-        if (results[key] === null) {
-          delete results[key];
-        } else {
-          newKey = key.split('_').shift();
-          results[newKey] = results[key];
-          delete results[key];
-        }
-      }
-    res.send(results);
+      setCache(id, results);
+      res.send(results);
     })
-  .catch((err) => {console.log('error', err);});
+    .catch((err) => {console.log('error', err);});
 });
 
 app.get('/listing-info', (req, res) => {
@@ -64,14 +52,18 @@ app.delete('/deleteListing', (req, res) => {
 
 app.post('/postListing', (req, res) => {
   let listing = req.body.listing;
-  postListing(id)
+  postListing(listing)
     .then((data) => {res.send(data)})
     .catch((err) => {console.log(err)})
 })
-// app.put()
-// app.patch()
 
-
+app.put('/updateListing', (req, res) => {
+  let id = Number(req.query.listingId);
+  let listing = req.body.listing;
+  updateListing(id, listing)
+    .then((data) => {res.send(data)})
+    .catch((err) => {console.log(err)})
+})
 
 app.post('/favorite', (req, res) => {
   let id = req.body.listingId;

@@ -1,40 +1,32 @@
-# config:
-#   target: 'http://127.0.0.1:3002/10003'
-
-#   phases:
-#     - duration: 60
-#       arrivalRate: 10
-#       name: 'Warm up'
-#     - duration: 120
-#       arrivalRate: 10
-#       rampTo: 25
-#       name: 'Ramp up'
-#     - duration: 1200
-#       arrivalRate: 25
-#       name: 'Cruise'
-#     - duration: 30
-#       arrivalRate: 100
-#       name: 'Crash'
-
 config:
   target: 'http://127.0.0.1:3002'
+  processor: "./artillery-functions.js"
   phases:
     - duration: 30
-      arrivalRate: 50
+      arrivalRate: 1
       name: 'Warm up'
-    - duration: 30
+    - duration: 10
       arrivalRate: 50
-      rampTo: 250
       name: 'Level 1'
-    # - duration: 30
-    #   arrivalRate: 250
-    #   rampTo: 500
-    #   name: 'Level 2'
-    # - duration: 60
-    #   arrivalRate: 500
-    #   name: 'Cruise'
-
+    - duration: 10
+      arrivalRate: 100
+      name: 'Level 2'
+    - duration: 10
+      arrivalRate: 200
+      name: 'Level 3'
+    - duration: 10
+      arrivalRate: 400
+      name: 'Level 4'
+    - duration: 10
+      arrivalRate: 800
+      name: 'Level 5'
+    # - duration: 10
+    #   arrivalRate: 1600
+    #   name: 'Level 6'
 scenarios:
   - flow:
+    - function: "generateRandomNumber"
     - get:
-        url: "/1003"
+        url: "/{{listing}}/rec-photos"
+
+
