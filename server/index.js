@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, updateListing}  = require('../db/index.js');
 const {getCache, setCache} = require('./redis.js')
+const {template} = require('./render/render.js');
+// const PhotoService = require('./render/template.js');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -17,6 +19,21 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
+});
+
+// GET main landing page
+app.get('/:id', (req, res) => {
+  // res.sendFile('index.html', {
+  //   root: path.join(__dirname + '/../public/'),
+  // });
+  let id = req.params.id;
+  getMainRouteNum(id)
+    .then((results) =>  {
+      let page = template(results)
+      res.send(page)
+    })
+    .catch((err) => {console.log('error', err);});
+
 });
 
 // GET list of s_photos
@@ -36,13 +53,6 @@ app.get('/:id/listing-info', (req, res) => {
   getMainRouteNum(id)
     .then((results) => {res.send(results);})
     .catch((err) => {console.log('error', err);});
-});
-
-// GET main landing page
-app.get('/:id', (req, res) => {
-  res.sendFile('index.html', {
-    root: path.join(__dirname + '/../public/'),
-  });
 });
 
 // POST listing info
@@ -79,8 +89,6 @@ app.put('/:id/updateListing', (req, res) => {
     .then((data) => {res.send(data)})
     .catch((err) => {console.log(err)})
 })
-
-
 
 
 module.exports = app;
