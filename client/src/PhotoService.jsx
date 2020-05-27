@@ -89,7 +89,7 @@ class PhotoService extends React.Component {
     let id = window.location.pathname.substr(1)
       $.ajax({
         method: 'GET',
-        url: `/${id}/listing-info`,
+        url: `http://54.177.223.78:3002/${id}/listing-info`,
         success: (result) => {
           let numOfPhotos = result.length;
           result = this.refactor(result);

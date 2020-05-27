@@ -75,7 +75,7 @@ class PhotoService extends _react.default.Component {
 
     _jquery.default.ajax({
       method: 'GET',
-      url: `/${id}/listing-info`,
+      url: `http://54.177.223.78:3002/${id}/listing-info`,
       success: result => {
         let numOfPhotos = result.length;
         result = this.refactor(result);
