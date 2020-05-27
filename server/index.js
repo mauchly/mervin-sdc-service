@@ -23,16 +23,16 @@ app.listen(port, () => {
 
 // GET main landing page
 app.get('/:id', (req, res) => {
-  // res.sendFile('index.html', {
-  //   root: path.join(__dirname + '/../public/'),
-  // });
-  let id = req.params.id;
-  getMainRouteNum(id)
-    .then((results) =>  {
-      let page = template(results)
-      res.send(page)
-    })
-    .catch((err) => {console.log('error', err);});
+  res.sendFile('index.html', {
+    root: path.join(__dirname + '/../public/'),
+  });
+  // let id = req.params.id;
+  // getMainRouteNum(id)
+  //   .then((results) =>  {
+  //     let page = template(results)
+  //     res.send(page)
+  //   })
+  //   .catch((err) => {console.log('error', err);});
 
 });
 
