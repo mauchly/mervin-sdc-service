@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, updateListing}  = require('../db/index.js');
 const {getCache, setCache} = require('./redis.js')
-const {template} = require('./render/render.js');
-// const PhotoService = require('./render/template.js');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -33,7 +31,6 @@ app.get('/:id', (req, res) => {
   //     res.send(page)
   //   })
   //   .catch((err) => {console.log('error', err);});
-
 });
 
 // GET list of s_photos

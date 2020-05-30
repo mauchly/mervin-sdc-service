@@ -1,10 +1,10 @@
 var pg = require('knex')({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'root',
-    password : 'root',
-    database : 'sdc'
+    host : '54.215.110.127',
+    user : 'postgres',
+    password : 'postgres',
+    database : 'postgres'
   }
 });
 
