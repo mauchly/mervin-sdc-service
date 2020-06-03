@@ -2,6 +2,7 @@ var pg = require('knex')({
   client: 'pg',
   connection: {
     host : process.env.DB_CONNECTION_HOST,
+    port : 5432,
     user : process.env.DB_CONNECTION_USER,
     password : process.env.DB_CONNECTION_PASSWORD,
     database : process.env.DB_CONNECTION_DATABASE
