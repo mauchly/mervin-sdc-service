@@ -4,3 +4,4 @@ report.json
 report.json.html
 newrelic_agent.log
 newrelic.js
+.env

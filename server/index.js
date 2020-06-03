@@ -1,11 +1,13 @@
-require('newrelic')
+require('newrelic');
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 5555;
 const bodyParser = require('body-parser');
 const path = require('path');
 const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, updateListing}  = require('../db/index.js');
-const {getCache, setCache} = require('./redis.js')
+const {getCache, setCache} = require('./redis.js');
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -17,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
+  console.log('node env',process.env.NODE_ENV )
 });
 
 // GET main landing page
