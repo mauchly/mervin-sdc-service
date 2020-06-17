@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, updateListing}  = require('../db/index.js');
 const {getCache, setCache} = require('./redis.js');
-
+const compression = require('compression');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,6 +16,9 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(compression());
+
+
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
