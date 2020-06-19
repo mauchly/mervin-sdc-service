@@ -5,3 +5,5 @@ report.json.html
 newrelic_agent.log
 newrelic.js
 .env
+artillery-functions.js
+artillery-load-testing.yml

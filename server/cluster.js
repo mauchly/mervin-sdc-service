@@ -8,7 +8,6 @@ if (cluster.isMaster) {
   for (var i = 0; i < cpuCount/4; i += 1) {
     cluster.fork();
   }
-
   // Listen for dying workers
   cluster.on('exit', function () {
     cluster.fork();
