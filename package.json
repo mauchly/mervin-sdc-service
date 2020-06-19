@@ -8,11 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "webpack --config webpack.prod.js & nodemon server/index.js",
-    "start-cluster": "webpack --config webpack.prod.js & nodemon server/cluster.js",
-    "react-dev": "webpack -d --watch",
-    "server-dev": "NODE_ENV=development & nodemon server/index.js",
-    "server-dev-cluster": "nodemon server/cluster.js",
+    "start": "nodemon server/server.bundle.js",
+    "build": "webpack -d --watch --mode=production",
     "create-db": "mysql -u root < schema.sql",
     "seed-db": "node db/seed.js",
     "test": "jest"
@@ -26,17 +23,16 @@
     "minimist": "^1.2.5",
     "mysql": "^2.18.1",
     "newrelic": "^6.7.1",
+    "path": "^0.12.7",
     "pg": "^8.2.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "redis": "^3.0.2",
     "regenerator-runtime": "^0.13.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
+    "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
     "babel-core": "^6.26.3",
     "babel-jest": "^25.5.1",
     "babel-loader": "^8.1.0",
@@ -54,20 +50,18 @@
     "jest-enzyme": "^7.1.2",
     "nodemon": "^2.0.4",
     "puppeteer": "^2.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "react16": "^1.0.0",
     "request": "^2.88.2",
+    "source-map-support": "^0.5.19",
     "style-loader": "^1.2.1",
     "superagent": "^5.2.2",
     "supertest": "^4.0.2",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
   },
   "jest": {
     "setupFilesAfterEnv": [

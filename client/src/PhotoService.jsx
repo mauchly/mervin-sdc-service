@@ -86,6 +86,7 @@ class PhotoService extends React.Component {
 
   //POSTGRES
   componentDidMount() {
+
     let id = window.location.pathname.substr(1)
       $.ajax({
         method: 'GET',

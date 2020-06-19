@@ -9,34 +9,32 @@ const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, u
 const {getCache, setCache} = require('./redis.js');
 const compression = require('compression');
 
+// APP
+import React from 'react';
+import PhotoService from '../client/src/PhotoService.jsx';
+import ReactDOMServer from 'react-dom/server.js';
+import template from './template/template.js';
+
+app.use(express.static('public'));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
-app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(compression());
 
-
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-  console.log('node env',process.env.NODE_ENV )
-});
+app.listen(port, () => {console.log(`Server listening on port ${port}`)});
 
 // GET main landing page
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public','test.txt'));
+// });
+
 app.get('/:id', (req, res) => {
-  res.sendFile('index.html', {
-    root: path.join(__dirname + '/../public/'),
-  });
-  // let id = req.params.id;
-  // getMainRouteNum(id)
-  //   .then((results) =>  {
-  //     let page = template(results)
-  //     res.send(page)
-  //   })
-  //   .catch((err) => {console.log('error', err);});
+  var appString = ReactDOMServer.renderToString(<PhotoService/>)
+  var html = template(appString);
+  res.send(html)
 });
 
 // GET list of s_photos
@@ -94,4 +92,4 @@ app.put('/:id/updateListing', (req, res) => {
 })
 
 
-module.exports = app;
+// module.exports = app;

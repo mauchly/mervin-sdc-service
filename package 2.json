@@ -12,7 +12,8 @@
     "server-dev": "nodemon server/index.js",
     "create-db": "mysql -u root < schema.sql",
     "seed-db": "node db/seed.js",
-    "test": "jest"
+    "test": "jest",
+    "stop": "nodemon server/index.js"
   },
   "dependencies": {
     "babel-jest": "^25.1.0",
