@@ -38,15 +38,24 @@ app.get('/:id', (req, res) => {
 });
 
 // GET list of s_photos
-app.get('/:id/rec-photos', getCache, (req, res) => {
+app.get('/:id/rec-photos', (req, res) => {
   let id = req.params.id;
   recPhotos(id)
     .then((results) => {
-      setCache(id, results);
       res.send(results);
     })
     .catch((err) => {console.log('error', err);});
 });
+
+// app.get('/:id/rec-photos', getCache, (req, res) => {
+//   let id = req.params.id;
+//   recPhotos(id)
+//     .then((results) => {
+//       setCache(id, results);
+//       res.send(results);
+//     })
+//     .catch((err) => {console.log('error', err);});
+// });
 
 // GET listing info
 app.get('/:id/listing-info', (req, res) => {
