@@ -7,3 +7,4 @@ newrelic.js
 .env
 artillery-functions.js
 artillery-load-testing.yml
+server/server.bundle.js
