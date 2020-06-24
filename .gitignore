@@ -1,5 +1,4 @@
 node_modules
-bundle.js
 report.json
 report.json.html
 newrelic_agent.log
@@ -8,3 +7,5 @@ newrelic.js
 artillery-functions.js
 artillery-load-testing.yml
 server/server.bundle.js
+public/bundle.js
+public/bundle.js.gz
