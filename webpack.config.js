@@ -3,6 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 
+
 var clientConfig = {
   entry: path.join(__dirname, 'client', 'src', 'renderPhotoService.jsx'),
   output: {
@@ -31,7 +32,7 @@ var clientConfig = {
     new CompressionPlugin({
       test: /\.js(\?.*)?$/i,
     }),
-  ],
+  ]
 };
 
 var serverConfig = {

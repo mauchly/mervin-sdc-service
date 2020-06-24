@@ -23,6 +23,7 @@ app.use(function(req, res, next) {
     'Access-Control-Allow-Origin':'*',
     'Access-Control-Allow-Methods':'*',
     'Access-Control-Allow-Headers':'*',
+    'X-Content-Type-Options': 'nosniff'
   })
   next();
 });
