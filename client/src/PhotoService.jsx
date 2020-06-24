@@ -48,45 +48,11 @@ class PhotoService extends React.Component {
     return Math.ceil(count / 3);
   };
 
-  // componentDidMount() {
-  //   let url = window.location.href;
-  //   let id = url.split('/').pop();
-  //   if (isNaN(Number(id))) {
-  //     if (listingNames.indexOf(id) === -1) {
-  //       id = listingNames[1];
-  //     }
-  //   }
-  //   let data = {listingId: id};
-  //     $.ajax({
-  //       method: 'GET',
-  //       url: 'http://localhost:3002/listing-info',
-  //       data,
-  //       dataType: 'text',
-  //       success: (result) => {
-  //         result = JSON.parse(result);
-  //         console.log('result in client', result);
-  //         let numOfPhotos = this.dupGetNumOfListingPhotos(result[0]);
-  //         this.setState(() => ({
-  //           currentListing: result[0],
-  //           currentPhotoUrl: result[0].photo1_a,
-  //           nextPrevImages: [result[0].photo1_b, result[0].photo2_b, result[0].photo3_b, result[0].photo4_b],
-  //           numOfCurrentListingPhotos: numOfPhotos,
-  //           currentPhotoCaption: result[0].photo1_caption
-  //         }));
-  //       },
-  //       error: (err) => {
-  //         console.log('error', err);
-  //       }
-  //     });
-  // };
-
-  //POSTGRES
   componentDidMount() {
-
     let id = window.location.pathname.substr(1)
       $.ajax({
         method: 'GET',
-        url: `/${id}/listing-info`,
+        url: `http://52.52.28.79/${id}/listing-info`,
         success: (result) => {
           let numOfPhotos = result.length;
           result = this.refactor(result);
