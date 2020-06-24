@@ -17,7 +17,13 @@ import template from './template/template.js';
 
 app.use(express.static('public'));
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Origin", "*");
+  res.header({
+    'Access-Control-Allow-Credentials' : '*',
+    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Methods':'*',
+    'Access-Control-Allow-Headers':'*',
+  })
   next();
 });
 app.use(bodyParser.json());
