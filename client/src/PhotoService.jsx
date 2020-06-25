@@ -2,17 +2,15 @@ import React from 'react';
 import $ from 'jquery';
 import PhotoGallery from './components/PhotoGallery.jsx';
 import Carousel from './components/Carousel.jsx';
-import Empty from './components/Empty.jsx'
 
 class PhotoService extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      carousel: Empty,
+      overlay: false, // added
       currentListing: [],
       is_Favorite: false,
       currentPhotoUrl: null,
-      s3PhotoBucketNumber: null,
       currentPhotoIndexInListing: 1,
       numOfCurrentListingPhotos: 30,
       currentPhotoCaption: 'Super Cool Listing!',
@@ -56,7 +54,7 @@ class PhotoService extends React.Component {
   handleViewPhotos (e) {
     e.preventDefault();
     this.setState({
-      carousel: Carousel,
+      overlay: true,
       nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     });
@@ -125,7 +123,7 @@ class PhotoService extends React.Component {
   handleExit(e) {
     e.preventDefault();
     this.setState({
-      carousel: Empty,
+      overlay: false,
       currentPhotoUrl: this.state.currentListing.photo1_a,
       currentPhotoCaption: this.state.currentListing.photo1_caption,
       currentPhotoIndexInListing: 1,
@@ -222,7 +220,7 @@ class PhotoService extends React.Component {
     let id = Number(e.target.id.split('').pop());
     if (id < 5) {
       this.setState({
-        carousel: Carousel,
+        overlay: true,
         currentPhotoUrl: url,
         currentPhotoIndexInListing: id,
         currentPhotoCaption: this.state.currentListing[`photo${id}_caption`],
@@ -244,7 +242,7 @@ class PhotoService extends React.Component {
     } else if (id === 5) {
       this.setState({
         nextPrevImages: [this.state.currentListing.photo2_b, this.state.currentListing.photo3_b, this.state.currentListing.photo4_b, this.state.currentListing.photo5_b],
-        carousel: Carousel,
+        overlay: true,
         currentPhotoUrl: url,
         currentPhotoIndexInListing: id,
         currentPhotoCaption: this.state.currentListing[`photo${id}_caption`],
@@ -255,12 +253,19 @@ class PhotoService extends React.Component {
   };
 
   render() {
-    return (
-      <div id="photoGalleryService">
-        <PhotoGallery state={this.state} handleViewPhotos={this.handleViewPhotos.bind(this)} handlePhotoClick={this.handlePhotoClick.bind(this)}/>
-        <this.state.carousel state={this.state} handleExit={this.handleExit.bind(this)} handleNextPrevClick={this.handleNextPrevClick.bind(this)} handleLeftClick={this.handleLeftClick.bind(this)} handleRightClick={this.handleRightClick.bind(this)}/>
-      </div>
-    )
+    if (!this.state.overlay) {
+      return (
+        <div id="photoGalleryService">
+          <PhotoGallery state={this.state} handleViewPhotos={this.handleViewPhotos.bind(this)} handlePhotoClick={this.handlePhotoClick.bind(this)}/>
+        </div>
+      )
+    } else {
+      return (
+        <div id="photoGalleryService">
+          <Carousel state={this.state} handleExit={this.handleExit.bind(this)} handleNextPrevClick={this.handleNextPrevClick.bind(this)} handleLeftClick={this.handleLeftClick.bind(this)} handleRightClick={this.handleRightClick.bind(this)}/>
+        </div>
+      )
+    }
   };
 };
 

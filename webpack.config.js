@@ -1,8 +1,5 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const webpack = require('webpack');
-const CompressionPlugin = require('compression-webpack-plugin');
-
 
 var clientConfig = {
   entry: path.join(__dirname, 'client', 'src', 'renderPhotoService.jsx'),
@@ -28,11 +25,7 @@ var clientConfig = {
       }
     ]
   },
-  plugins: [
-    new CompressionPlugin({
-      test: /\.js(\?.*)?$/i,
-    }),
-  ]
+
 };
 
 var serverConfig = {
@@ -41,7 +34,7 @@ var serverConfig = {
   node: {
     __dirname: false
   },
-  devtool: "source-map",
+  // devtool: "source-map",
   externals: [nodeExternals()],
   output: {
     filename: 'server.bundle.js',
@@ -51,7 +44,7 @@ var serverConfig = {
     rules: [
       {
         test: /\.js(x)$/,
-        include : [path.join(__dirname, 'client'), path.join(__dirname, 'server'), path.join(__dirname, 'public')],
+        include : [path.join(__dirname, 'client'), path.join(__dirname, 'server')],
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -65,14 +58,7 @@ var serverConfig = {
         use: ['style-loader', 'css-loader']
       }
     ]
-  },
-  plugins: [
-    new webpack.BannerPlugin({
-      banner: 'require("source-map-support").install();',
-      raw: true,
-      entryOnly: false
-    })
-  ],
+  }
 };
 
 module.exports = [clientConfig, serverConfig]

@@ -17,14 +17,7 @@ import template from './template/template.js';
 
 app.use(express.static('public'));
 app.use(function(req, res, next) {
-  // res.header("Access-Control-Allow-Origin", "*");
-  res.header({
-    'Access-Control-Allow-Credentials' : '*',
-    'Access-Control-Allow-Origin':'*',
-    'Access-Control-Allow-Methods':'*',
-    'Access-Control-Allow-Headers':'*',
-    'X-Content-Type-Options': 'nosniff'
-  })
+  res.header("Access-Control-Allow-Origin", "*");
   next();
 });
 app.use(bodyParser.json());
@@ -83,7 +76,6 @@ app.post('/postListing', (req, res) => {
 // POST favorite
 app.post('/favorite', (req, res) => {
   let id = req.body.listingId;
-  console.log('id', id)
   toggleFavorite(id)
     .then((results) => {res.send(results);})
     .catch((err) => {console.log('error', err);});
@@ -108,4 +100,3 @@ app.put('/:id/updateListing', (req, res) => {
 })
 
 
-// module.exports = app;

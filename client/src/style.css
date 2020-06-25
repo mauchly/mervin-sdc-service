@@ -120,6 +120,7 @@
 
 #PhotoService .innerPhoto {
   transition: .35s ease-in-out;
+  background-color: black;
 }
 
 #PhotoService .innerPhoto:hover {
@@ -149,14 +150,11 @@
   background-color: black !important;
 }
 
-#PhotoService .innerPhoto {
-  background-color: black;
-}
 
 
 /* MERVIN */
 
-.airbnb-logo {
+/* .airbnb-logo {
   width:40.27px;
   height:44.7px;
   float:left;
@@ -190,8 +188,8 @@
   float: right;
   margin: -61px 18px 0 0;
   height: 2.6em
-}
-.photoContainer-first {
+} */
+/* .photoContainer-first {
   overflow: hidden;
   height: 440px;
   width: 49.89%;
@@ -207,18 +205,25 @@
   border: 1px solid #454545;
   background-color: #454545;
   float:left
-}
-#photo1 {
+} */
+/* #photo1 {
   opacity: 1-index-array;
   height: 109%;
   width: 100%;
   background-color:#454545;
   float:left
-}
-#photo2, #photo3, #photo4, #photo5 {
+} */
+/* #photo2, #photo3, #photo4, #photo5 {
   opacity: 100%;
   height: 109%;
   width: 100%;
   background-color:#454545;
   float:left
+} */
+
+.photoWrapper:hover > div {
+  opacity: .7
+}
+.photoWrapper > div:hover {
+  opacity: 1;
 }

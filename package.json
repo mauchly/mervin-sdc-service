@@ -10,6 +10,7 @@
   "scripts": {
     "start": "nodemon server/server.bundle.js",
     "build": "webpack -d --watch --mode=production --display-modules",
+    "build-dev": "webpack -d --watch --mode=development --display-modules",
     "create-db": "mysql -u root < schema.sql",
     "seed-db": "node db/seed.js",
     "test": "jest"
