@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, updateListing}  = require('../db/index.js');
 const compression = require('compression');
 const _ = require('lodash');
+const {getCache, getCacheRP, setCache} = require('./redis.js');
 
 // APP
 import React from 'react';
@@ -28,7 +29,7 @@ app.use(compression());
 app.listen(port, () => {console.log(`Server listening on port ${port}`)});
 
 // GET main landing page
-app.get('/:id', (req, res) => {
+app.get('/:id', getCache, (req, res) => {
   let id = req.params.id;
   let listingInfo;
   getMainRouteNum(id)
@@ -38,6 +39,7 @@ app.get('/:id', (req, res) => {
   })
   .then((html) => {
     var final = template(html, listingInfo)
+    setCache(`l${id}`, final);
     res.send(final)
   })
   .catch((err) => {console.log('error', err)});
@@ -45,28 +47,13 @@ app.get('/:id', (req, res) => {
 });
 
 // GET list of s_photos
-app.get('/:id/rec-photos', (req, res) => {
+app.get('/:id/rec-photos', getCacheRP, (req, res) => {
   let id = req.params.id;
   recPhotos(id)
-    .then((results) => {res.send(results)})
-    .catch((err) => {console.log('error', err)});
-});
-
-// app.get('/:id/rec-photos', getCache, (req, res) => {
-//   let id = req.params.id;
-//   recPhotos(id)
-//     .then((results) => {
-//       setCache(id, results);
-//       res.send(results);
-//     })
-//     .catch((err) => {console.log('error', err);});
-// });
-
-// GET listing info
-app.get('/:id/listing-info', (req, res) => {
-  let id = req.params.id;
-  getMainRouteNum(id)
-    .then((results) => {res.send(results);})
+    .then((results) => {
+      setCache(`rp${id}`, results);
+      res.send(results);
+    })
     .catch((err) => {console.log('error', err);});
 });
 
