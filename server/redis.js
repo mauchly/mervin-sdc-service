@@ -29,7 +29,7 @@ const getCacheRP = (req, res, next) => {
 }
 
 const setCache = (id, results) => {
-  client.set(id, JSON.stringify(results))
+  client.set(id, results.toString())
 }
 
 module.exports = {
