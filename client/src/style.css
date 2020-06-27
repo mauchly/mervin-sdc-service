@@ -97,25 +97,15 @@
   font-weight: 450;
   font-size: 0.88em;
   font-stretch: 'ultra-condensed';
-  padding-left: 33px;
-  width:'100px';
   color: rgba(65, 65, 65);
+  height: 36px;
+  width: 100px;
 }
 
 #PhotoService .photoGalButton:focus{
   border: 1px solid rgb(0, 0, 0, 0.5) !important;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.75);
   outline: none;
-}
-
-#PhotoService #viewPhotos{
-  font-style: 'sans-serif';
-  font-weight: 450;
-  font-size: 0.87em;
-  font-stretch: 'ultra-condensed';
-  padding-left: 8px;
-  width:'100px';
-  color: rgba(65, 65, 65);
 }
 
 #PhotoService .innerPhoto {
@@ -148,6 +138,13 @@
 
 #PhotoService .photoContainer {
   background-color: black !important;
+  overflow: hidden;
+  height: 219px;
+  width: 24.8%;
+  border: 1px solid #454545;
+  background-color: #454545;
+  float:left;
+  position: relative;
 }
 
 
@@ -226,4 +223,56 @@
 }
 .photoWrapper > div:hover {
   opacity: 1;
+}
+#Save, #Saved {
+  z-index: 10;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  overflow: hidden;
+  border: none;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+}
+#Share {
+  z-index: 10;
+  position: absolute;
+  top: 24px;
+  right: 136px;
+  overflow: hidden;
+  border: none;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+}
+#viewPhotos {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  height: 36px;
+  width: 114px;
+  border: none;
+  border-radius: 4px;
+
+
+  font-style: 'sans-serif';
+  font-weight: 450;
+  font-size: 0.87em;
+  font-stretch: 'ultra-condensed';
+  padding-left: 8px;
+  /* width:'100px'; */
+  color: rgba(65, 65, 65);
+}
+
+.heart-save, .heart-saved, .share-icon {
+  width: 30%;
+  height: auto;
+  margin-right: 5px;
 }

@@ -7,5 +7,5 @@ newrelic.js
 artillery-functions.js
 artillery-load-testing.yml
 server/server.bundle.js
-public/bundle.js
-public/bundle.js.gz
+public/bundle.render.js
+public/bundle.hydrate.js

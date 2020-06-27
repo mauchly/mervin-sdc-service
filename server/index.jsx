@@ -4,17 +4,18 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5555;
 const bodyParser = require('body-parser');
-const path = require('path');
 const {getMainRouteNum, toggleFavorite, recPhotos, deleteListing, postListing, updateListing}  = require('../db/index.js');
-const {getCache, setCache} = require('./redis.js');
 const compression = require('compression');
+const _ = require('lodash');
 
 // APP
 import React from 'react';
 import PhotoService from '../client/src/PhotoService.jsx';
 import ReactDOMServer from 'react-dom/server.js';
 import template from './template/template.js';
+import {refactor} from './template/functions.js'
 
+// Middleware
 app.use(express.static('public'));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -27,24 +28,28 @@ app.use(compression());
 app.listen(port, () => {console.log(`Server listening on port ${port}`)});
 
 // GET main landing page
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public','test.txt'));
-// });
-
 app.get('/:id', (req, res) => {
-  var appString = ReactDOMServer.renderToString(<PhotoService/>)
-  var html = template(appString);
-  res.send(html)
+  let id = req.params.id;
+  let listingInfo;
+  getMainRouteNum(id)
+  .then((results) => {
+    listingInfo = refactor(results);
+    return ReactDOMServer.renderToString(<PhotoService initialData={listingInfo}/>);
+  })
+  .then((html) => {
+    var final = template(html, listingInfo)
+    res.send(final)
+  })
+  .catch((err) => {console.log('error', err)});
+
 });
 
 // GET list of s_photos
 app.get('/:id/rec-photos', (req, res) => {
   let id = req.params.id;
   recPhotos(id)
-    .then((results) => {
-      res.send(results);
-    })
-    .catch((err) => {console.log('error', err);});
+    .then((results) => {res.send(results)})
+    .catch((err) => {console.log('error', err)});
 });
 
 // app.get('/:id/rec-photos', getCache, (req, res) => {
@@ -80,7 +85,6 @@ app.post('/favorite', (req, res) => {
     .then((results) => {res.send(results);})
     .catch((err) => {console.log('error', err);});
 });
-
 
 // DELETE listing
 app.delete('/:id/deleteListing', (req, res) => {

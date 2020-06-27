@@ -1,7 +1,8 @@
-var template = function(appString) {
+var template = function(appString, data) {
   return (
     `<div id="PhotoService">${appString}</div>
-    <script src='bundle.js'></script>`
+    <script>window.__initialData__ = ${JSON.stringify(data)}</script>
+    <script src='bundle.hydrate.js'></script>`
   )
 }
 

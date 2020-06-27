@@ -11,6 +11,7 @@
     "start": "nodemon server/server.bundle.js",
     "build": "webpack -d --watch --mode=production --display-modules",
     "build-dev": "webpack -d --watch --mode=development --display-modules",
+    "build-render": "webpack -d --mode=production --config webpack.render.js",
     "create-db": "mysql -u root < schema.sql",
     "seed-db": "node db/seed.js",
     "test": "jest"
@@ -21,6 +22,7 @@
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "knex": "^0.21.1",
+    "lodash": "^4.17.15",
     "minimist": "^1.2.5",
     "newrelic": "^6.7.1",
     "path": "^0.12.7",

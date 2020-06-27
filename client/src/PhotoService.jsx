@@ -6,50 +6,27 @@ import Carousel from './components/Carousel.jsx';
 class PhotoService extends React.Component {
   constructor(props) {
     super(props)
+
+    let listingInfo;
+    if (props.initialData) {
+      listingInfo = props.initialData
+    } else {
+      listingInfo = window.__initialData__;
+      delete window.__initialData__;
+    }
+
     this.state = {
-      overlay: false, // added
-      currentListing: [],
-      is_Favorite: false,
-      currentPhotoUrl: null,
+      overlay: false,
+      currentListing: listingInfo,
+      currentPhotoUrl: listingInfo.photo1_a,
       currentPhotoIndexInListing: 1,
       numOfCurrentListingPhotos: 30,
-      currentPhotoCaption: 'Super Cool Listing!',
-      nextPrevImages: [],
+      currentPhotoCaption: listingInfo.photo1_caption,
+      nextPrevImages: [listingInfo.photo1_b, listingInfo.photo2_b, listingInfo.photo3_b, listingInfo.photo4_b],
       nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     }
   };
-
-  componentDidMount() {
-    let id = window.location.pathname.substr(1)
-    $.ajax({
-      method: 'GET',
-      url: `http://52.52.28.79/${id}/listing-info`,
-      success: (result) => {
-        let numOfPhotos = result.length;
-        result = this.refactor(result);
-        this.setState(() => ({
-          currentListing: result,
-          currentPhotoUrl: result.photo1_a,
-          nextPrevImages: [result.photo1_b, result.photo2_b, result.photo3_b, result.photo4_b],
-          numOfCurrentListingPhotos: numOfPhotos,
-          currentPhotoCaption: result.photo1_caption
-        }));
-      },
-      error: (err) => {console.log('error', err);}
-    });
-  };
-
-  refactor (result) {
-    let object = {};
-    object.listing_id = result[0].listing_id;
-    result.forEach((each, index) => {
-      object[`photo${index+1}_a`] = each.l_photo;
-      object[`photo${index+1}_b`] = each.s_photo;
-      object[`photo${index+1}_caption`] = each.alt_txt;
-    })
-    return object;
-  }
 
   handleViewPhotos (e) {
     e.preventDefault();
