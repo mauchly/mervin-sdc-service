@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 var clientConfig = {
-  entry: path.join(__dirname, 'client', 'src', 'hydratePhotoService.jsx'),
+  entry: path.join(__dirname, 'client', 'hydratePhotoService.jsx'),
   output: {
     filename: 'bundle.hydrate.js',
     path: path.join(__dirname, 'public')

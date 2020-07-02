@@ -11,7 +11,7 @@ const {getCache, getCacheRP, setCache} = require('./redis.js');
 
 // APP
 import React from 'react';
-import PhotoService from '../client/src/PhotoService.jsx';
+import PhotoService from '../client/PhotoService.jsx';
 import ReactDOMServer from 'react-dom/server.js';
 import {template, refactor} from './template/template.js';
 

@@ -8,10 +8,9 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/server.bundle.js",
-    "build": "webpack -d --watch --mode=production --display-modules",
+    "start": "node server/server.bundle.js",
+    "build": "webpack -d --mode=production",
     "build-dev": "webpack -d --watch --mode=development --display-modules",
-    "build-render": "webpack -d --mode=production --config webpack.render.js",
     "create-db": "mysql -u root < schema.sql",
     "seed-db": "node db/seed.js",
     "test": "jest"
