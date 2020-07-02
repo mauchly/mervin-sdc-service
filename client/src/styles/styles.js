@@ -8,8 +8,6 @@ const photostyle = {
   position: "relative",
 }
 
-
 module.exports = {
   photostyle,
-
 }
