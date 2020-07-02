@@ -1,2 +1,9 @@
 node_modules
-bundle.js
+report.json
+report.json.html
+newrelic_agent.log
+newrelic.js
+.env
+server/server.bundle.js
+public/bundle.render.js
+public/bundle.hydrate.js

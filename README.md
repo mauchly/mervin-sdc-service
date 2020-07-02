@@ -1,44 +1,41 @@
-<<<<<<< HEAD
-# Project Name
+# AirBnB Mock System Design
 
-> Project description
+This is an AirBnB mock backend design environment in order to test scaling and deployment capabilities
 
-## Related Projects
+> Frontend: React
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+> Backend: Express, Knex, Postgresql, Redis, NGINX
+
+> Compilation: Webpack
+
+> Stress Test: Artillery, Newrelic, Loader.io
+
+Purpose of this application is to design an server architecture that can handle extreme stress in the forms of HTTP requests
+- Understand application architecture to optimize speed between client, server, and database
+- Understand cost/hardware capacities to deployment on AWS EC2
+- Understand different forms of proxy, load balancers, and caching systems in order to meet 10,000 requests per second
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
+1. [Usage](#usage)
 1. [Development](#development)
 
-## Usage
-
-> Some usage instructions
-
 ## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
 - Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
 
 ```sh
 npm install -g webpack
 npm install
 ```
 
-=======
-# mervin-sdc-service
-AirBnB mock photo service
->>>>>>> 0a8d9e5d6f7ab6750f40b0908cee2324c4dbd511
+## Usage
+
+```sh
+npm build
+npm start
+```
+
+## Development Journal
+
+https://github.com/mervinpan/mervin-sdc-journal/blob/master/journal.md
