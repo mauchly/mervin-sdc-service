@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PhotoService from './PhotoService.jsx';
-import '../../public/style.css';
+import './style.css';
 
-ReactDOM.render(<PhotoService/>, document.getElementById('PhotoService'));
+ReactDOM.hydrate(<PhotoService/>, document.getElementById('PhotoService'));

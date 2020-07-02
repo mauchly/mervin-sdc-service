@@ -1,0 +1,32 @@
+config:
+  target: 'http://127.0.0.1:3002'
+  processor: "./artillery-functions.js"
+  phases:
+    - duration: 30
+      arrivalRate: 1
+      name: 'Warm up'
+    - duration: 10
+      arrivalRate: 50
+      name: 'Level 1'
+    - duration: 10
+      arrivalRate: 100
+      name: 'Level 2'
+    - duration: 10
+      arrivalRate: 200
+      name: 'Level 3'
+    - duration: 10
+      arrivalRate: 400
+      name: 'Level 4'
+    - duration: 10
+      arrivalRate: 800
+      name: 'Level 5'
+    - duration: 10
+      arrivalRate: 1600
+      name: 'Level 6'
+scenarios:
+  - flow:
+    - function: "generateRandomNumber"
+    - get:
+        url: "/{{listing}}/rec-photos"
+
+
