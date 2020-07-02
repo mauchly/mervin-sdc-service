@@ -1,2 +1,8 @@
 node_modules
 bundle.js
+.env
+newrelic.js
+newrelic_agent.log
+public/bundle.hydrate.js
+report.json
+report.json.html
