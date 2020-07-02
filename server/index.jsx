@@ -13,8 +13,7 @@ const {getCache, getCacheRP, setCache} = require('./redis.js');
 import React from 'react';
 import PhotoService from '../client/src/PhotoService.jsx';
 import ReactDOMServer from 'react-dom/server.js';
-import template from './template/template.js';
-import {refactor} from './template/functions.js'
+import {template, refactor} from './template/template.js';
 
 // Middleware
 app.use(express.static('public'));
