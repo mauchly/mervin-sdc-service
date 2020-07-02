@@ -1,9 +1,13 @@
 # AirBnB Mock System Design
 
 This is an AirBnB mock backend design environment in order to test scaling and deployment capabilities
+
 > Frontend: React
+
 > Backend: Express, Knex, Postgresql, Redis, NGINX
+
 > Compilation: Webpack
+
 > Stress Test: Artillery, Newrelic, Loader.io
 
 Purpose of this application is to design an server architecture that can handle extreme stress in the forms of HTTP requests
